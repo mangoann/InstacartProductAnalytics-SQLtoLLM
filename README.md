@@ -48,7 +48,7 @@ This analysis not only validates whether the Pareto Principle applies to Instaca
 
 >Roadmap Tracker:
 >- [x] Define the business objective
->- [x] Understand and prepare the data
+>- [ ] Understand and prepare the data
 >- [ ] Measure product and customer contribution
 >- [ ] Explore semantic patterns among top-performing products
 >- [ ] Deliver strategic recommendations
@@ -182,6 +182,12 @@ Based on the findings, I recommend Instacart to
 3. Introduce filters or curated bundles for organic products to enhance user discovery.
 4. Expand the organic product line, especially in categories where current options are limited.
 
+>Roadmap Tracker:
+>- [x] Define the business objective
+>- [x] Understand and prepare the data
+>- [x] Measure product and customer contribution
+>- [x] Explore semantic patterns among top-performing products
+>- [x] Deliver strategic recommendations
 
 ## Appendix: Full Notebooks
 The full code for generating the final table and conducting the LLM analysis can be found in the accompanying Jupyter notebook included in this repository.
