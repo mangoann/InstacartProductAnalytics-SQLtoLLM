@@ -1,7 +1,7 @@
-# Instacart Hero Products: Finding the 10% That Drive 80% of Sales
-This analysis finds that fewer than 10% of Instacart’s products account for over 80% of both total orders and customer reach — confirming and even exceeding the expectations of the Pareto Principle.  
+# Uncovering Instacart’s Top Products Driving 80% of Orders and Their Patterns
+This analysis finds that Instacart's business confirms and exceeds the expectations of the Pareto Principle - fewer than 10% of Instacart’s products account for over 80% of both total orders and customer reach. These **high-performing SKUs** are not only heavily ordered but also widely adopted across the user base, making them critical drivers of Instacart’s business performance.  
 
-These **high-performing SKUs** are not only heavily ordered but also widely adopted across the user base, making them critical drivers of Instacart’s business performance. To better understand what makes these products successful, this analysis also designs an LLM-powered system to **explore semantic patterns** that may reveal shared product categories among the top-performing SKUs.
+To better understand what makes these products successful, this analysis also designs an LLM-powered system to **explore semantic patterns** that may reveal shared product categories among the top-performing SKUs.
 
 ## Project Scope
 This project answers the following business questions:
@@ -13,11 +13,11 @@ By analyzing both order volume, user reach and product patterns, this analysis o
 ## Project Roadmap
 The steps I will follow are:
 
-- [ ] Define the business objective
-- [ ] Understand and prepare the data
-- [ ] Measure product and customer contribution
-- [ ] Explore semantic patterns among top-performing products
-- [ ] Deliver strategic recommendations
+1. Define the business objective
+2. Understand and prepare the data
+3. Measure product and customer contribution
+4. Explore semantic patterns among top-performing products
+5. Deliver strategic recommendations
 ## Step 1: Define the Business Objective
 ### 1.1 What Business Questions can this analysis answer?
 This analysis aims to answer the question:  
@@ -46,12 +46,12 @@ By identifying and prioritizing these high-performing SKUs, Instacart can:
 
 This analysis not only validates whether the Pareto Principle applies to Instacart’s business, but also translates that insight into practical, high-leverage recommendations.
 
-Roadmap Tracker:
-- [x] Define the business objective
-- [x] Understand and prepare the data
-- [ ] Measure product and customer contribution
-- [ ] Explore semantic patterns among top-performing products
-- [ ] Deliver strategic recommendations
+>Roadmap Tracker:
+>- [x] Define the business objective
+>- [x] Understand and prepare the data
+>- [ ] Measure product and customer contribution
+>- [ ] Explore semantic patterns among top-performing products
+>- [ ] Deliver strategic recommendations
 ## Step 2: Understand and Prepare the Data
 The Instacart Online Grocery Shopping Dataset 2017 includes a sample of over 3 million grocery orders placed by more than 200,000 Instacart users. The exact time span of the orders is not specified, and it is reasonable to assume that the transactions took place within or around the year of 2017 according to its title.  
 
@@ -70,8 +70,6 @@ The full dataset is organized across five key files, capturing customer behavior
 | `order_hour_of_day`  | Hour of the day the order was placed                                        |
 | `days_since_prior`   | Days since the last order (N/A for first orders, capped at 30)              |
 
----
-
 #### Table: `products.csv` (50k rows — product-level fact data)
 
 | Column             | Description                                  |
@@ -81,8 +79,6 @@ The full dataset is organized across five key files, capturing customer behavior
 | `aisle_id`         | Foreign key to `aisles.csv`                  |
 | `department_id`    | Foreign key to `departments.csv`             |
 
----
-
 #### Table: `aisles.csv` (134 rows — aisle-level fact data)
 
 | Column             | Description           |
@@ -90,16 +86,12 @@ The full dataset is organized across five key files, capturing customer behavior
 | `aisle_id` [pk]    | Aisle identifier      |
 | `aisle_name`       | Name of the aisle     |
 
----
-
 #### Table: `departments.csv` (21 rows — department-level fact data)
 
 | Column                 | Description             |
 |------------------------|-------------------------|
 | `department_id` [pk]   | Department identifier   |
 | `department`           | Name of the department  |
-
----
 
 #### Table: `order_products.csv` (32 million rows — order-product join table)
 
@@ -112,7 +104,7 @@ The full dataset is organized across five key files, capturing customer behavior
 
 ### 2.2 Relational Database Diagram
 ![ERD](ERD.jpg)  
-*Figure: Entity-Relationship Diagram of the Instacart dataset, showing table structures and foreign key relationships. Users place multiple orders, each order contains multiple products, and products are classified by aisle and department.*
+*__Figure: Entity-Relationship Diagram of the Instacart dataset__, showing table structures and foreign key relationships. Users place multiple orders, each order contains multiple products, and products are classified by aisle and department.*
 ### 2.3 Define Performance Metrics
 To answer the business questions, I must first define what “business performance” means in the context of this dataset.  
 
@@ -131,12 +123,12 @@ To evaluate product performance, this analysis focuses on two key dimensions: **
 | `total_order_count` | Total number of times the product was ordered    |
 | `unique_user_count` | Number of distinct users who ordered the product |  
 
-Roadmap Tracker:
-- [x] Define the business objective
-- [x] Understand and prepare the data
-- [ ] Measure product and customer contribution
-- [ ] Explore semantic patterns among top-performing products
-- [ ] Deliver strategic recommendations
+>Roadmap Tracker:
+>- [x] Define the business objective
+>- [x] Understand and prepare the data
+>- [ ] Measure product and customer contribution
+>- [ ] Explore semantic patterns among top-performing products
+>- [ ] Deliver strategic recommendations
 ## Step 3: Measure Product and Customer Contribution
 #### 1. Does Instacart’s Business Follow the Pareto Principle?  
 To answer this business question, I first translate it into a technical one: **Do fewer than 20% of products account for 80% of total orders?**  
@@ -158,12 +150,12 @@ This part of the analysis takes a **dual-metric approach**—examining both **or
 
 The analysis revealed that these top-performing products collectively reach **88% of all users**, confirming that the most-ordered items are also the most widely adopted. This finding reinforces the Pareto Principle even more strongly: **Less than 10% of all products account for more than 80% of both volume and reach**, making them critical to Instacart’s operational efficiency and customer engagement strategy.
 
-Roadmap Tracker:
-- [x] Define the business objective
-- [x] Understand and prepare the data
-- [x] Measure product and customer contribution
-- [ ] Explore semantic patterns among top-performing products
-- [ ] Deliver strategic recommendations
+>Roadmap Tracker:
+>- [x] Define the business objective
+>- [x] Understand and prepare the data
+>- [x] Measure product and customer contribution
+>- [ ] Explore semantic patterns among top-performing products
+>- [ ] Deliver strategic recommendations
 ## Step 4: Explore Semantic Patterns using LLM
 To uncover the semantic patterns top-performing products share, I applied an **LLM-based text embedding and clustering analysis** on the names of top-performing SKUs.  
 
@@ -173,18 +165,23 @@ This suggests that organic positioning is a key driver of both order volume and 
 
 ![Semantic Clusters of Top Products](cluster.jpg)  
 *Figure: t-SNE visualization of clustered product embeddings*
-Roadmap Tracker:
-- [x] Define the business objective
-- [x] Understand and prepare the data
-- [x] Measure product and customer contribution
-- [x] Explore semantic patterns among top-performing products
-- [ ] Deliver strategic recommendations
+>Roadmap Tracker:
+>- [x] Define the business objective
+>- [x] Understand and prepare the data
+>- [x] Measure product and customer contribution
+>- [x] Explore semantic patterns among top-performing products
+>- [ ] Deliver strategic recommendations
 ## Step 5: Business Insights and Recommendations
 The analysis shows that less than 10% of products drive over 80% of Instacart’s total orders, and these top-performing SKUs are also the most widely adopted across the customer base. These are Instacart’s “hero products” — operationally critical and broadly relevant — and warrant increased focus in marketing, inventory planning, and recommendation strategies.
 
 Additionally, LLM-based semantic analysis reveals a clear pattern: the majority of top-performing products include the word “Organic” in their names. This signals strong consumer preference for organic offerings.  
 
-Based on the findings, I recommend boosting the visibility of top-performing SKUs through enhanced search ranking, homepage placement, and promotional strategies. In particular, organic labeling plays a key role in customer engagement. Instacart should prioritize organic keywords in its search and recommendation algorithms, introduce filters or curated bundles for organic products to improve discoverability, and consider expanding its organic product line—especially in categories with limited offerings.  
+Based on the findings, I recommend Instacart to
+1. Boost visibility of top-performing SKUs in search, promotions, and homepage placement.
+2. Prioritize organic labeling and keywords in search and recommendation algorithms.
+3. Introduce filters or curated bundles for organic products to enhance user discovery.
+4. Expand the organic product line, especially in categories where current options are limited.
+
 
 ## Appendix: Full Notebooks
 The full code for generating the final table and conducting the LLM analysis can be found in the accompanying Jupyter notebook included in this repository.
