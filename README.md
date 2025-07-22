@@ -72,7 +72,7 @@ The full dataset is organized across five key files, capturing customer behavior
 
 ---
 
-#### Table: `products.csv` (50k rows — product-level metadata)
+#### Table: `products.csv` (50k rows — product-level fact data)
 
 | Column             | Description                                  |
 |--------------------|----------------------------------------------|
@@ -83,7 +83,7 @@ The full dataset is organized across five key files, capturing customer behavior
 
 ---
 
-#### Table: `aisles.csv` (134 rows — aisle-level metadata)
+#### Table: `aisles.csv` (134 rows — aisle-level fact data)
 
 | Column             | Description           |
 |--------------------|-----------------------|
@@ -92,7 +92,7 @@ The full dataset is organized across five key files, capturing customer behavior
 
 ---
 
-#### Table: `departments.csv` (21 rows — department-level metadata)
+#### Table: `departments.csv` (21 rows — department-level fact data)
 
 | Column                 | Description             |
 |------------------------|-------------------------|
@@ -112,10 +112,7 @@ The full dataset is organized across five key files, capturing customer behavior
 
 ### 2.2 Relational Database Diagram
 ![ERD](ERD.jpg)  
-*Figure: Instacart Source Dataset Entity-Relationship Diagram*  
-*One user can place multiple orders over time.*  
-*One order can include multiple products.*  
-*One product can appear in multiple orders, possibly across many users.*
+*Figure: Entity-Relationship Diagram of the Instacart dataset, showing table structures and foreign key relationships. Users place multiple orders, each order contains multiple products, and products are classified by aisle and department.*
 ### 2.3 Define Performance Metrics
 To answer the business questions, I must first define what “business performance” means in the context of this dataset.  
 
@@ -141,21 +138,14 @@ Roadmap Tracker:
 - [ ] Explore semantic patterns among top-performing products
 - [ ] Deliver strategic recommendations
 ## Step 3: Measure Product and Customer Contribution
-1. Does Instacart’s Business Follow the Pareto Principle?  
+#### 1. Does Instacart’s Business Follow the Pareto Principle?  
+To answer this business question, I first translate it into a technical one: **Do fewer than 20% of products account for 80% of total orders?**  
 
-To answer this business question, I first translate it into a technical one:  
+After analyzing the data, I found that only **9.13% of products** drive 80% of all orders. This reveals a highly concentrated product distribution, where a small subset of SKUs dominates customer demand. Instacart’s business aligns strongly with the Pareto Principle—confirming that a small share of products generates the majority of outcomes.
 
-**Do fewer than 20% of products account for 80% of total orders?**  
+#### 2. Are those best-selling products also the most widely adopted across users?  
 
-After analyzing the data, I found that only **9.13% of products** drive 80% of all orders. This reveals a highly concentrated product distribution, where a small subset of SKUs dominates customer demand.  
-
-**Conclusion**: Instacart’s business aligns strongly with the Pareto Principle—confirming that a small share of products generates the majority of outcomes.
-
-2. Are those best-selling products also the most widely adopted across users?  
-
-To translate this business question into a technical one:  
-
-**Among the products that contribute to 80% of total orders, do they also account for 80% of total unique users?**
+To translate this business question into a technical one: **Among the products that contribute to 80% of total orders, do they also account for 80% of total unique users?**
 
 This part of the analysis takes a **dual-metric approach**—examining both **order volume** and **user reach**—to identify which products are not only heavily ordered but also broadly adopted.
 
@@ -166,9 +156,7 @@ This part of the analysis takes a **dual-metric approach**—examining both **or
 | Low    | High   | Trial Product              |
 | Low    | Low    | Low-Impact Item            |
 
-The analysis revealed that these top-performing products collectively reach **88% of all users**, confirming that the most-ordered items are also the most widely adopted.
-
-This finding reinforces the Pareto Principle even more strongly: **Less than 10% of all products account for more than 80% of both volume and reach**, making them critical to Instacart’s operational efficiency and customer engagement strategy.
+The analysis revealed that these top-performing products collectively reach **88% of all users**, confirming that the most-ordered items are also the most widely adopted. This finding reinforces the Pareto Principle even more strongly: **Less than 10% of all products account for more than 80% of both volume and reach**, making them critical to Instacart’s operational efficiency and customer engagement strategy.
 
 Roadmap Tracker:
 - [x] Define the business objective
@@ -198,6 +186,7 @@ Additionally, LLM-based semantic analysis reveals a clear pattern: the majority 
 
 Based on the findings, I recommend boosting the visibility of top-performing SKUs through enhanced search ranking, homepage placement, and promotional strategies. In particular, organic labeling plays a key role in customer engagement. Instacart should prioritize organic keywords in its search and recommendation algorithms, introduce filters or curated bundles for organic products to improve discoverability, and consider expanding its organic product line—especially in categories with limited offerings.  
 
+## Appendix: Full Notebooks
 The full code for generating the final table and conducting the LLM analysis can be found in the accompanying Jupyter notebook included in this repository.
-1. ![InstacartAnalysis1.ipynb](InstacartAnalysis1.ipynb): Data preparation using SQL
-2. ![InstacartAnalysis2.ipynb](InstacartAnalysis2.ipynb): Semantic pattern exploration using LLM
+> [**InstacartAnalysis1.ipynb**](./InstacartAnalysis1.ipynb): Data preparation using SQL  
+> [**InstacartAnalysis2.ipynb**](./InstacartAnalysis2.ipynb): Semantic pattern exploration using LLM
